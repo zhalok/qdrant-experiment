@@ -20,8 +20,12 @@ search_result = client.query_points(
     query=query_embeddings,
     with_payload=True,
     with_vectors=False,
-    limit=3
+    limit=3,
+    score_threshold=0.4
 ).points
+
+if len(search_result) == 0:
+    print("Sorry we did not find any perfect match for you")
 
 for res in search_result:
     product_description = res.payload["text"]
