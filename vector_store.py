@@ -44,7 +44,6 @@ def prepare_qdrant_point_from_payload_descriptions(model,payloads,get_embeddings
     for payload in payloads:
         text_for_embeddings = payload["text"]
         embeddings = get_embeddings_func(text_for_embeddings,model)
-        del payload["text"]
         point = PointStruct(id=payload["id"], vector=embeddings, payload=payload)
         points.append(point)
     
